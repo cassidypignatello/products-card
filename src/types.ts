@@ -4,13 +4,11 @@ export interface Product {
   price: number
 }
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number
 }
 
-interface State {
+export interface State {
   products: Product[]
   cart: CartItem[]
 }
-
-export {}
