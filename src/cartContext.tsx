@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useReducer } from 'react'
-import { CartItem, Product, State } from './types'
+import { Product, State } from './types'
 import { products } from './mockData'
 
 type CartAction =
@@ -39,4 +39,11 @@ function cartReducer(state: State, action: CartAction): State {
     default:
       return state
   }
+}
+
+export const CartContext = createContext<{ state: State, dispatch: React.Dispatch<CartAction> } | undefined>(undefined)
+
+export function CartProvider({ children }: CartProviderProps) {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+  return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
 }
